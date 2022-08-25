@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 56fcc1190d6577f4baba4672f7e53f7b
+guid: 8d10fced97a87de4cb89477d4bf7bf13
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,13 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Magenta
+      name: Magenta.001
     second: {fileID: 2100000, guid: 86a8c22bef58b77488650f3243736dbd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: floor and walls
-    second: {fileID: 2100000, guid: 00c81ab6147a4b84b97a3ea7eb0a0c27, type: 2}
+    second: {fileID: 2100000, guid: 9fafb2fb978081b4ca1053e80cf3b1c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: floor and walls.001
+    second: {fileID: 2100000, guid: a589ff0ba9619c5469c45ebd0bac36f7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
