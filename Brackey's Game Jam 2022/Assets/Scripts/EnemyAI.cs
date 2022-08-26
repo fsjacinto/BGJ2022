@@ -5,133 +5,233 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    //private CharacterController controller;
-    //[SerializeField] private float speed;
-    //private Vector3 playerVelocity;
-    //float gravity = 1f;
-    //float vSpeed = 0f;
+    private Rigidbody enemyRB;
+    //private NavMeshAgent agent;
 
-    NavMeshAgent agent;
+    [SerializeField] private float enemySpeed = 5f;
 
     // Array of waypoints to walk from one to the next one
-    [SerializeField]
-    private Transform[] waypoints;
+    [SerializeField] private Transform[] waypoints;
 
-    // Walk speed that can be set in Inspector
-    [SerializeField]
-    private float moveSpeed = 2f;
-
-    // Index of current waypoint from which Enemy walks
-    // to the next one
+    //
     private int waypointIndex = 0;
+    private Vector3 direction;
+    private bool isDone = false;
+    public bool traversed = false;
 
-    [SerializeField] Light spotLight;
-    [SerializeField] float turnSpeed;
 
-    // Use this for initialization
     private void Start()
     {
-
-        // Set position of Enemy as position of the first waypoint
-        transform.position = waypoints[waypointIndex].transform.position;
-        //StartCoroutine(TurnToFace(spotLight.transform, waypoints[waypointIndex].transform.position));
+        enemyRB = GetComponent<Rigidbody>();
+        //agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Awake()
+    void FixedUpdate()
     {
-        //controller = GetComponent<CharacterController>();
-        agent = GetComponent<NavMeshAgent>();
+        //// Get input
+        //if(transform.position != waypoints[0].transform.position)
+        //{
+        //    mH = -1;
+        //    mV = -1;
+        //}
+        //else
 
+
+        //Vector3 m_Input = new Vector3(1, 0, Input.GetAxis("Vertical"));
+
+        //// Apply the movement vector to the current position, which is
+        //// multiplied by deltaTime and speed for a smooth MovePosition
+        //enemyRB.velocity = new Vector3(mH * playerSpeed, enemyRB.velocity.y, mV * playerSpeed);
+
+        if (direction != Vector3.zero)
+        {
+            enemyRB.MovePosition(transform.position + direction * enemySpeed * Time.deltaTime);
+        }
+        //else
+        //    isDone = true;
+
+        //else
+        //    waypointIndex++;
+            
     }
 
-    protected void LateUpdate()
-    {
-        transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z);
-    }
 
-
-    // Update is called once per frame
     private void Update()
     {
+        //Debug.Log(waypointIndex);
+        Debug.Log(direction);
 
-        // Move Enemy
-        Move();
-    }
-
-    // Method that actually make Enemy walk
-    private void Move()
-    {
-        // If Enemy didn't reach last waypoint it can move
-        // If enemy reached last waypoint then it stops
         if (waypointIndex <= waypoints.Length - 1)
         {
-            agent.SetDestination(waypoints[waypointIndex].transform.position);
+            //isDone = false;
+            if (!traversed)
+                direction = waypoints[waypointIndex].transform.position - transform.position;
+            else
+                direction = Vector3.zero;
 
-            Vector3 distanceToWalkPoint = transform.position - waypoints[waypointIndex].transform.position;
-
-            //Walkpoint reached
-            if (distanceToWalkPoint.magnitude < 1f)
-                waypointIndex += 1;
-            //walkPointSet = false;
-
-            ////------------------------------------------
-            //// Move Enemy from current waypoint to the next one
-            //// using MoveTowards method
-            //transform.position = Vector3.MoveTowards(transform.position,
-            //   waypoints[waypointIndex].transform.position,
-            //   moveSpeed * Time.deltaTime);
-
-            ////spotLight.transform.LookAt(waypoints[waypointIndex].transform.position);
-
-            //IncreaseWaypointIndex();
-            ////------------------------------------------------------
-
-
-            //// If Enemy reaches position of waypoint he walked towards
-            //// then waypointIndex is increased by 1
-            //// and Enemy starts to walk to the next waypoint
-            //if (transform.position == waypoints[waypointIndex].transform.position)
-            //{
-            //    Debug.Log("TRRUUEE");
-            //    waypointIndex += 1;
-            //}
+            if (direction == Vector3.zero)
+            {
+                waypointIndex++;
+                traversed = false;
+            }
         }
-        else
-        {
-            transform.position = new Vector3(-13.8f, 0.34f, 1.36f);
-            //waypointIndex = 0;
-        }
+        //Move();
     }
 
+    
 
-    IEnumerator TurnToFace(Transform objectTransform, Vector3 lookTarget)
-    {
-        Vector3 dirToLookTarget = (lookTarget - objectTransform.position).normalized;
-        float targetAngle = 90 - Mathf.Atan2(dirToLookTarget.z, dirToLookTarget.x) * Mathf.Rad2Deg;
+    // Attempt 6
+    // ----------------------------------------------------------------------------------------
+    //// Method that actually make Enemy walk
+    //private void Move()
+    //{
+    //    // If Enemy didn't reach last waypoint it can move
+    //    // If enemy reached last waypoint then it stops
+    //    if (waypointIndex <= waypoints.Length - 1)
+    //    {
+    //        agent.SetDestination(waypoints[waypointIndex].transform.position);
 
-        while (Mathf.DeltaAngle(transform.eulerAngles.y, targetAngle) > 0.05f)
-        {
-            float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetAngle, turnSpeed * Time.deltaTime);
-            transform.eulerAngles = Vector3.up * angle;
-            
-            yield return null;
-        }
-    }
+    //        Vector3 distanceToWalkPoint = transform.position - waypoints[waypointIndex].transform.position;
 
-    private void IncreaseWaypointIndex(){
+    //        //Walkpoint reached
+    //        if (distanceToWalkPoint.magnitude < 1f)
+    //            waypointIndex += 1;
+    //        //walkPointSet = false;
+    //    }
+    //    else
+    //    {
+
+    //        //transform.position = new Vector3(-13.8f, 0.34f, 1.36f);
+    //        waypointIndex = 0;
+    //    }
+    //}
 
 
-        // If Enemy reaches position of waypoint he walked towards
-        // then waypointIndex is increased by 1
-        // and Enemy starts to walk to the next waypoint
-        if (transform.position == waypoints[waypointIndex].transform.position)
-        {
-            StartCoroutine(TurnToFace(spotLight.transform, waypoints[waypointIndex].transform.position));
-            Debug.Log("TRRUUEE");
-            waypointIndex += 1;
-        }
 
-    }
+
+    //// Attempt 5?
+    ////----------------------------------------
+    //NavMeshAgent agent;
+
+    //// Array of waypoints to walk from one to the next one
+    //[SerializeField]
+    //private Transform[] waypoints;
+
+    //// Walk speed that can be set in Inspector
+    //[SerializeField]
+    //private float moveSpeed = 2f;
+
+    //// Index of current waypoint from which Enemy walks
+    //// to the next one
+    //private int waypointIndex = 0;
+
+    //[SerializeField] Light spotLight;
+    //[SerializeField] float turnSpeed;
+
+    //// Use this for initialization
+    //private void Start()
+    //{
+
+    //    // Set position of Enemy as position of the first waypoint
+    //    transform.position = waypoints[waypointIndex].transform.position;
+    //    //StartCoroutine(TurnToFace(spotLight.transform, waypoints[waypointIndex].transform.position));
+    //}
+
+    //private void Awake()
+    //{
+    //    //controller = GetComponent<CharacterController>();
+    //    agent = GetComponent<NavMeshAgent>();
+
+    //}
+
+    //protected void LateUpdate()
+    //{
+    //    transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z);
+    //}
+
+
+    //// Update is called once per frame
+    //private void Update()
+    //{
+
+    //    // Move Enemy
+    //    Move();
+    //}
+
+    //// Method that actually make Enemy walk
+    //private void Move()
+    //{
+    //    // If Enemy didn't reach last waypoint it can move
+    //    // If enemy reached last waypoint then it stops
+    //    if (waypointIndex <= waypoints.Length - 1)
+    //    {
+    //        agent.SetDestination(waypoints[waypointIndex].transform.position);
+
+    //        Vector3 distanceToWalkPoint = transform.position - waypoints[waypointIndex].transform.position;
+
+    //        //Walkpoint reached
+    //        if (distanceToWalkPoint.magnitude < 1f)
+    //            waypointIndex += 1;
+    //        //walkPointSet = false;
+
+    //        ////------------------------------------------
+    //        //// Move Enemy from current waypoint to the next one
+    //        //// using MoveTowards method
+    //        //transform.position = Vector3.MoveTowards(transform.position,
+    //        //   waypoints[waypointIndex].transform.position,
+    //        //   moveSpeed * Time.deltaTime);
+
+    //        ////spotLight.transform.LookAt(waypoints[waypointIndex].transform.position);
+
+    //        //IncreaseWaypointIndex();
+    //        ////------------------------------------------------------
+
+
+    //        //// If Enemy reaches position of waypoint he walked towards
+    //        //// then waypointIndex is increased by 1
+    //        //// and Enemy starts to walk to the next waypoint
+    //        //if (transform.position == waypoints[waypointIndex].transform.position)
+    //        //{
+    //        //    Debug.Log("TRRUUEE");
+    //        //    waypointIndex += 1;
+    //        //}
+    //    }
+    //    else
+    //    {
+    //        transform.position = new Vector3(-13.8f, 0.34f, 1.36f);
+    //        //waypointIndex = 0;
+    //    }
+    //}
+
+
+    //IEnumerator TurnToFace(Transform objectTransform, Vector3 lookTarget)
+    //{
+    //    Vector3 dirToLookTarget = (lookTarget - objectTransform.position).normalized;
+    //    float targetAngle = 90 - Mathf.Atan2(dirToLookTarget.z, dirToLookTarget.x) * Mathf.Rad2Deg;
+
+    //    while (Mathf.DeltaAngle(transform.eulerAngles.y, targetAngle) > 0.05f)
+    //    {
+    //        float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetAngle, turnSpeed * Time.deltaTime);
+    //        transform.eulerAngles = Vector3.up * angle;
+
+    //        yield return null;
+    //    }
+    //}
+
+    //private void IncreaseWaypointIndex(){
+
+
+    //    // If Enemy reaches position of waypoint he walked towards
+    //    // then waypointIndex is increased by 1
+    //    // and Enemy starts to walk to the next waypoint
+    //    if (transform.position == waypoints[waypointIndex].transform.position)
+    //    {
+    //        StartCoroutine(TurnToFace(spotLight.transform, waypoints[waypointIndex].transform.position));
+    //        Debug.Log("TRRUUEE");
+    //        waypointIndex += 1;
+    //    }
+
+    //}
 
     // -------------------------------------------------------------------
     //public LayerMask whatIsGround, whatIsPlayer;
@@ -230,7 +330,7 @@ public class EnemyAI : MonoBehaviour
 
 
 
-    // ------------------------------------
+    // ------------------------------------------------------------------------------------------
 
 
 
