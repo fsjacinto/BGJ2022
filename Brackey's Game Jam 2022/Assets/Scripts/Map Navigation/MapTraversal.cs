@@ -15,6 +15,12 @@ public class MapTraversal : MonoBehaviour
             player = collision.transform;
             StartCoroutine(PlayerTraverseLocation());
         }
+
+        if (collision.CompareTag("Enemy"))
+        {
+            enemy = collision.transform;
+            StartCoroutine(EnemyTraverseLocation());
+        }
         /*
         else if (collision.CompareTag("Enemy"))
         {
@@ -37,5 +43,6 @@ public class MapTraversal : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         enemy.position = enterToRoom.position;
+        enemy.GetComponent<EnemyAI>().traversed = true;
     }
 }

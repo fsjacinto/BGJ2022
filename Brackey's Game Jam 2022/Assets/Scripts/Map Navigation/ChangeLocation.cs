@@ -8,7 +8,7 @@ public class ChangeLocation : MonoBehaviour
 
     private void Awake()
     {
-        location.SetActive(false);
+        //location.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -23,7 +23,7 @@ public class ChangeLocation : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            location.SetActive(false);
+            //location.SetActive(false);
         }
     }
 }
