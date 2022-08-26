@@ -6,21 +6,30 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI dialogueText;
-    public Image charSprite;
+    public Image actorImage;
+    public TextMeshProUGUI actorName;
+    public TextMeshProUGUI messageText;
+    
     public float wordSpeed;
 
     private Queue<string> sentences;
+    Message[] currentMessages;
+    Actor[] currentActors;
+    int activeMessage = 0;
+    public static bool isActive = false;
 
-    void Start()
+    public void OpenDialogue(Message[] messages, Actor[] actors) 
     {
-        sentences = new Queue<string>();
-    }
+        currentMessages = messages;
+        currentActors = actors;
+        activeMessage = 0;
+        isActive = true;
 
-    public void StartDialogue(Dialogue dialogue)
-    {
-        charSprite.sprite = dialogue.dialogueSprite;
+        Debug.Log("Started conversation. Loaded messages: " + messages.Length);
+
+        DisplayMessage();
+
+        /*charSprite.sprite = dialogue.dialogueSprite;
         nameText.text = dialogue.name;
 
         sentences.Clear();
@@ -28,36 +37,59 @@ public class DialogueManager : MonoBehaviour
         foreach(string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
-        }
-
-        DisplayNextSentence();
+        }*/
     }
 
-    public void DisplayNextSentence()
+    public void DisplayMessage()
     {
-        if(sentences.Count == 0)
+        /*if(sentences.Count == 0)
         {
             EndDialogue();
             return;
         }
 
-        string sentence = sentences.Dequeue();
+        string sentence = sentences.Dequeue();*/
+
+        Message messageToDisplay = currentMessages[activeMessage];
+        messageText.text = messageToDisplay.message;
+
+        Actor actorToDisplay = currentActors[messageToDisplay.actorID];
+        actorName.text = actorToDisplay.name;
+        actorImage.sprite = actorToDisplay.sprite;
+
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        StartCoroutine(TypeSentence(messageToDisplay.message));
+    }
+
+    public void NextMessage()
+    {
+        activeMessage++;
+        if (activeMessage < currentMessages.Length)
+        {
+            DisplayMessage();
+        }
+        else
+        {
+            Debug.Log("Conversation ended.");
+            isActive = false;
+        }
     }
 
     IEnumerator TypeSentence(string sentence)
     {
-        dialogueText.text = "";
+        messageText.text = "";
         foreach(char letter in sentence.ToCharArray())
         {
-            dialogueText.text += letter;
+            messageText.text += letter;
             yield return new WaitForSeconds(wordSpeed);
         }
     }
 
-    void EndDialogue()
+    private void Update()
     {
-        Debug.Log("End of conversation.");
+        if (Input.GetKeyDown(KeyCode.Space) && isActive == true)
+        {
+            NextMessage();
+        }
     }
 }
