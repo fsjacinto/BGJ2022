@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour
 
     /// ///////////////////////////////////////////////////////////
     [SerializeField] GameObject dialogueBox;
+    //[SerializeField] DialogueTrigger lastDialogue;
     /// ///////////////////////////////////////////////////////////
 
     public void OpenDialogue(Message[] messages, Actor[] actors) 
@@ -80,7 +81,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             Debug.Log("Conversation ended.");
-            isActive = false;
+            //isActive = false;
             ////////////////////////////////////////////////////////////////////////////////
             dialogueBox.SetActive(false);
             StartCoroutine(DelayExploration());
@@ -91,6 +92,7 @@ public class DialogueManager : MonoBehaviour
     IEnumerator DelayExploration()
     {
         yield return new WaitForSeconds(0.2f);
+        isActive = false;
         GameManager.instance.currentState = GameState.Exploration;
     }
 
@@ -106,8 +108,10 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isActive == true)
+        Debug.Log(GameManager.instance.currentState);
+        if (Input.GetKeyDown(KeyCode.Space) && isActive == true && GameManager.instance.currentState == GameState.Dialogue)
         {
+            Debug.Log("Next");
             NextMessage();
         }
     }
