@@ -23,12 +23,23 @@ public class EnemyAI : MonoBehaviour
 
     public Location enemyLocation;
 
+    // Flashlight Rotation
+    [SerializeField] private GameObject flashLight;
+    private float desiredRot;
+    public float rotSpeed = 250;
+    public float damping = 10;
+
+
     public enum EnemyState
     {
         Patrolling,
         Chasing
     }
 
+    private void Awake()
+    {
+        desiredRot = flashLight.transform.eulerAngles.y;
+    }
 
     private void Start()
     {
@@ -60,14 +71,12 @@ public class EnemyAI : MonoBehaviour
         if (direction != Vector3.zero)
         {
             enemyRB.MovePosition(transform.position + direction * enemySpeed * Time.deltaTime);
-            //enemyRB.MovePosition(Vector3.SmoothDamp(transform.position, waypoints[waypointIndex].transform.position,
-            //    ref enemySpeed, Time.deltaTime));
-        }
-        //else
-        //    isDone = true;
+                //enemyRB.MovePosition(Vector3.SmoothDamp(transform.position, waypoints[waypointIndex].transform.position,
+                //    ref enemySpeed, Time.deltaTime));
 
-        //else
-        //    waypointIndex++;
+        }
+        
+
             
     }
 
@@ -116,6 +125,17 @@ public class EnemyAI : MonoBehaviour
             {
                 waypointIndex = 0;
             }
+
+            // Flashlight Rotate
+            //var desiredRotQ = Quaternion.Euler(flashLight.transform.eulerAngles.x, desiredRot, flashLight.transform.eulerAngles.z);
+            //flashLight.transform.rotation = Quaternion.Lerp(flashLight.transform.rotation, desiredRotQ, Time.deltaTime * damping);
+
+            Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
+            flashLight.transform.rotation = Quaternion.RotateTowards(flashLight.transform.rotation, toRotation, rotSpeed * Time.deltaTime);
+
+
+
+
 
             //else if (waypointIndex <= waypoints.Length - 1 && !isMovingToLast)
             //{
