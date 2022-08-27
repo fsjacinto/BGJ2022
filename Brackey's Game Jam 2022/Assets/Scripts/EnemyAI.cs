@@ -18,12 +18,21 @@ public class EnemyAI : MonoBehaviour
     private Vector3 direction;
     private bool isDone = false;
     public bool traversed = false;
+    private EnemyState enemyState;
+    private bool isMovingToLast;
+
+    public enum EnemyState
+    {
+        Patrolling,
+        Chasing
+    }
 
 
     private void Start()
     {
         enemyRB = GetComponent<Rigidbody>();
         //agent = GetComponent<NavMeshAgent>();
+        isMovingToLast = true;
     }
 
     void FixedUpdate()
@@ -43,9 +52,13 @@ public class EnemyAI : MonoBehaviour
         //// multiplied by deltaTime and speed for a smooth MovePosition
         //enemyRB.velocity = new Vector3(mH * playerSpeed, enemyRB.velocity.y, mV * playerSpeed);
 
+        if(enemyState == EnemyState.Patrolling)
+
         if (direction != Vector3.zero)
         {
             enemyRB.MovePosition(transform.position + direction * enemySpeed * Time.deltaTime);
+            //enemyRB.MovePosition(Vector3.SmoothDamp(transform.position, waypoints[waypointIndex].transform.position,
+            //    ref enemySpeed, Time.deltaTime));
         }
         //else
         //    isDone = true;
@@ -58,24 +71,86 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(waypointIndex);
-        Debug.Log(direction);
 
-        if (waypointIndex <= waypoints.Length - 1)
+        //Debug.Log(direction);
+        enemyState = EnemyState.Patrolling;
+        /// Patrolling
+        if(enemyState == EnemyState.Patrolling)
         {
-            //isDone = false;
-            if (!traversed)
-                direction = waypoints[waypointIndex].transform.position - transform.position;
-            else
-                direction = Vector3.zero;
-
-            if (direction == Vector3.zero)
+            // Going from Wa
+            if (waypointIndex <= waypoints.Length - 1 && isMovingToLast)
             {
-                waypointIndex++;
-                traversed = false;
+                //Debug.Log(waypointIndex);
+                //Debug.Log(direction);
+                isMovingToLast = true;
+
+
+                //Debug.Log(traversed);
+
+                // Reaching Waypoints
+                if (!traversed)
+                {
+                    direction = waypoints[waypointIndex].transform.position - transform.position;
+                    Debug.Log(direction);
+                    if (Mathf.Abs(direction.x) < 0.1f && Mathf.Abs(direction.z) < 0.1f)
+                        direction = Vector3.zero;
+                }
+
+                else {
+                    direction = Vector3.zero;
+                    traversed = false;
+                    //waypointIndex++;
+                }
+
+                // Move on to Next Waypoint
+                if (direction == Vector3.zero)
+                {
+                    Debug.Log("Add");
+                    waypointIndex++;
+                }
+            }
+
+            else if (waypointIndex <= waypoints.Length - 1 && !isMovingToLast)
+            {
+                isMovingToLast = false;
+
+
+                // Reaching Waypoints
+                if (!traversed)
+                {
+                    direction = waypoints[waypointIndex].transform.position - transform.position;
+                    //Debug.Log(direction);
+                    if (Mathf.Abs(direction.x) < 0.1f && Mathf.Abs(direction.z) < 0.1f)
+                        direction = Vector3.zero;
+                }
+
+                else
+                {
+                    direction = Vector3.zero;
+                    traversed = false;
+                    //waypointIndex++;
+                }
+
+                // Move on to Next Waypoint
+                if (direction == Vector3.zero)
+                {
+                    waypointIndex--;
+                    traversed = false;
+                }
+            }
+
+            else
+            {
+                Debug.Log("ELSe");
+                //if (isMovingToLast)
+                //    waypointIndex++;
+                //else
+                //    waypointIndex --;
+
+                //isMovingToLast = !isMovingToLast;
             }
         }
-        //Move();
+
     }
 
     
