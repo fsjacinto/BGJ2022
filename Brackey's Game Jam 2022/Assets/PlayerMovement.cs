@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.instance.currentState != GameState.Exploration) return;
         // Get input
         mH = -(Input.GetAxisRaw("Horizontal"));
         mV = -(Input.GetAxisRaw("Vertical"));
@@ -32,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.currentState != GameState.Exploration) return;
+
         // Animation
         if (mH == 0f && mV == 0f)
         {

@@ -6,8 +6,13 @@ public class MapTraversal : MonoBehaviour
 {
     [SerializeField] private Transform enterToRoom;
     [SerializeField] private PlayerFace playerFaceTo;
+    [SerializeField] private Location colliderLocation;
+    [SerializeField] private DialogueTrigger noAccessDialogue;
+    [SerializeField] private List<int> prereqList;
 
     [SerializeField] private bool isColliding = false;
+    [SerializeField] private bool hasEnemyStayedLong = false;
+    private bool canAccess;
 
     private Transform player;
     private Transform enemy;
@@ -24,8 +29,14 @@ public class MapTraversal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isColliding)
         {
-            StartCoroutine(PlayerTraverseLocation());
+            if (canAccess)
+                StartCoroutine(PlayerTraverseLocation());
+            else
+                if(GameManager.instance.dialogueGO.activeSelf == false)
+                    noAccessDialogue.StartDialogue();
         }
+
+        
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -33,12 +44,25 @@ public class MapTraversal : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isColliding = true;
+
+            canAccess = GameManager.instance.CheckPrereqTasks(prereqList);
+            //GameObject levelManager = GameObject.FindWithTag("LevelManager");
+            //levelManager.GetComponent<Level>
+            //canAccess = Ga
+
         }
 
         if (collision.CompareTag("Enemy"))
         {
-            enemy = collision.transform;
-            StartCoroutine(EnemyTraverseLocation());
+            if (hasEnemyStayedLong)
+            {
+                enemy = collision.transform;
+                StartCoroutine(EnemyTraverseLocation());
+            }
+            //else
+            //{
+            //    StartCoroutine(AllowEnemyTraversal());
+            //}
         }
     }
 
@@ -62,6 +86,19 @@ public class MapTraversal : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         enemy.position = enterToRoom.position;
         enemy.GetComponent<EnemyAI>().traversed = true;
+
+        if(enemy.GetComponent<EnemyAI>().enemyLocation != colliderLocation)
+        {
+            hasEnemyStayedLong = false;
+        }
+        //hasEnemyStayedLong = false;
+
+    }
+
+    public IEnumerator ToggleEnemyTraversal(bool isAllow)
+    {
+        yield return new WaitForSeconds(2f);
+        hasEnemyStayedLong = isAllow;
     }
 
 }
