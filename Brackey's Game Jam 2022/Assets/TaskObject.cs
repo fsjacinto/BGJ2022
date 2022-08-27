@@ -28,21 +28,22 @@ public class TaskObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isColliding && GameManager.instance.currentState == GameState.Exploration)
+        if (Input.GetKeyDown(KeyCode.Space) && isColliding)
         {
+            if (GameManager.instance.currentState != GameState.Exploration) return;
+
             if (canAccess)
             {
                 if (isfinished)
                 {
+                    Debug.Log("Bread1");
                     // finished dialogue
                     if (finishedDialogue != null)
                         finishedDialogue.StartDialogue();
-
-
-
                 }
                 else
                 {
+                    Debug.Log("Bread2");
                     isfinished = true;
                     // yes access
                     if (yesAccessDialogue != null)
@@ -55,7 +56,8 @@ public class TaskObject : MonoBehaviour
             }
             else 
             {
-                if(noAccessDialogue != null)
+                Debug.Log("Bread3");
+                if (noAccessDialogue != null)
                     noAccessDialogue.StartDialogue();
             }
         }
