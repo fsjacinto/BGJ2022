@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private float mH = 0f;
     private float mV = 0f;
 
+    public Location playerLocation;
+
     private void Awake()
     {
         playerRB = GetComponent<Rigidbody>();

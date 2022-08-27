@@ -8,6 +8,7 @@ public class ChangeLocation : MonoBehaviour
     [SerializeField] private Location location;
     [SerializeField] private List<MapTraversal> mapTraversals;
 
+    private PlayerMovement playerMovement;
     private EnemyAI enemyAI;
     private Light enemyLight;
     private SpriteRenderer enemySpriteRenderer;
@@ -18,7 +19,8 @@ public class ChangeLocation : MonoBehaviour
         enemyAI = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();
         enemySpriteRenderer = enemyAI.GetComponentInChildren<SpriteRenderer>();
         enemyLight = GameObject.FindGameObjectWithTag("EnemyLight").GetComponent<Light>();
-        
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+
         enemyLight.enabled = false;
         enemySpriteRenderer.enabled = false;
     }
@@ -29,8 +31,9 @@ public class ChangeLocation : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             vCamera.SetActive(true);
+            playerMovement.playerLocation = location;
 
-            if (enemyAI.enemyLocation == location)
+            if (enemyAI.enemyLocation == playerMovement.playerLocation)
             {
                 enemyLight.enabled = true; 
                 enemySpriteRenderer.enabled = true;
@@ -41,11 +44,14 @@ public class ChangeLocation : MonoBehaviour
         {
             collision.GetComponent<EnemyAI>().ChangeLocation(location);
 
-            if(collision.GetComponent<EnemyAI>().enemyLocation == location)
+            if (collision.GetComponent<EnemyAI>().enemyLocation == playerMovement.playerLocation)
             {
                 enemyLight.enabled = true;
                 enemySpriteRenderer.enabled = true;
+            }
 
+            if (collision.GetComponent<EnemyAI>().enemyLocation == location)
+            {
                 foreach (MapTraversal mt in mapTraversals)
                 {
                     StartCoroutine(mt.ToggleEnemyTraversal(true));
@@ -59,12 +65,14 @@ public class ChangeLocation : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             vCamera.SetActive(false);
-            enemyLight.enabled = false;
-            enemySpriteRenderer.enabled = false;
+
+            StartCoroutine(ToggleEnemy());
         }
 
         if (collision.CompareTag("Enemy"))
         {
+            StartCoroutine(ToggleEnemy());
+
             if (collision.GetComponent<EnemyAI>().enemyLocation == location)
             {
                 foreach (MapTraversal mt in mapTraversals)
@@ -72,6 +80,17 @@ public class ChangeLocation : MonoBehaviour
                     StartCoroutine(mt.ToggleEnemyTraversal(false));
                 }
             }
+        }
+    }
+
+    IEnumerator ToggleEnemy()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (enemyAI.enemyLocation != playerMovement.playerLocation)
+        {
+            Debug.Log("pass");
+            enemyLight.enabled = false;
+            enemySpriteRenderer.enabled = false;
         }
     }
 }
