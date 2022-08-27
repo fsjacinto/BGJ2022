@@ -103,7 +103,7 @@ public class MapTraversal : MonoBehaviour
 
     public IEnumerator ToggleEnemyTraversal(bool isAllow)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         hasEnemyStayedLong = isAllow;
     }
 

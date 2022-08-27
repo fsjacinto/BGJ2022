@@ -9,13 +9,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float playerSpeed = 5f;
     public Animator playerAnimator;
 
+    [Header("Player Stairs")]
+    [SerializeField] GameObject stepRayUpper;
+    [SerializeField] GameObject stepRayLower;
+    [SerializeField] float stepHeight = 0.2f;
+    [SerializeField] float stepSmooth = 0.1f;
+
     private float mH = 0f;
     private float mV = 0f;
 
-
-    private void Start()
+    private void Awake()
     {
-        playerRB = GetComponent<Rigidbody>();    
+        playerRB = GetComponent<Rigidbody>();
+        stepRayUpper.transform.position = new Vector3(stepRayLower.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
     }
 
     void FixedUpdate()
@@ -34,18 +40,13 @@ public class PlayerMovement : MonoBehaviour
         // Apply the movement vector to the current position, which is
         // multiplied by deltaTime and speed for a smooth MovePosition
         playerRB.velocity = new Vector3(mH * playerSpeed, playerRB.velocity.y, mV * playerSpeed);
+
+        //Climbing up stairs
+        StepClimb();
     }
 
     void Update()
     {
-        //if (GameManager.instance.currentState != GameState.Exploration)
-        //{
-        //    mV = 0f;
-        //    mH = 0f;
-        //    return;
-        //}
-
-
         // Animation
         if (mH == 0f && mV == 0f)
         {
@@ -62,6 +63,20 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetFloat("Horizontal", mH);
 
             playerAnimator.SetFloat("Vertical", mV);
+        }
+    }
+
+    private void StepClimb()
+    {
+        RaycastHit hitLower;
+
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.back), out hitLower, 0.2f))
+        {
+            RaycastHit hitUpper;
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.back), out hitUpper, 0.2f) && mV < 0)
+            {
+                playerRB.position -= new Vector3(0f, -stepSmooth, 0f);
+            }
         }
     }
 
