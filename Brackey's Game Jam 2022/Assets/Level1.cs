@@ -14,7 +14,6 @@ public class Level1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogueSet[0].StartDialogue();
         GameManager.instance.SetTasks(firstLevelTaskList);
     }
 
@@ -22,6 +21,11 @@ public class Level1 : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void StartLevelDialogue()
+    {
+        dialogueSet[0].StartDialogue();
     }
 
     //public bool CheckTasks(List<int> taskIndexList)
