@@ -5,15 +5,34 @@ using UnityEngine;
 public class MapTraversal : MonoBehaviour
 {
     [SerializeField] private Transform enterToRoom;
+    [SerializeField] private PlayerFace playerFaceTo;
+
+    [SerializeField] private bool isColliding = false;
+
     private Transform player;
     private Transform enemy;
+
+    private PlayerMovement playerMovement;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerMovement = player.GetComponentInChildren<PlayerMovement>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isColliding)
+        {
+            StartCoroutine(PlayerTraverseLocation());
+        }
+    }
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Player"))
         {
-            player = collision.transform;
-            StartCoroutine(PlayerTraverseLocation());
+            isColliding = true;
         }
 
         if (collision.CompareTag("Enemy"))
@@ -21,21 +40,20 @@ public class MapTraversal : MonoBehaviour
             enemy = collision.transform;
             StartCoroutine(EnemyTraverseLocation());
         }
-        /*
-        else if (collision.CompareTag("Enemy"))
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.CompareTag("Player"))
         {
-            if (enemy == null)
-            {
-                enemy = collision.transform;    //cache enemy
-            }
-            StartCoroutine(EnemyTraverseLocation());
+            isColliding = false;
         }
-        */
     }
 
     private IEnumerator PlayerTraverseLocation()
     {
         yield return new WaitForSeconds(0.5f);
+        playerMovement.PlayerFaceTo(playerFaceTo);
         player.position = enterToRoom.position;
     }
 
@@ -45,4 +63,5 @@ public class MapTraversal : MonoBehaviour
         enemy.position = enterToRoom.position;
         enemy.GetComponent<EnemyAI>().traversed = true;
     }
+
 }
