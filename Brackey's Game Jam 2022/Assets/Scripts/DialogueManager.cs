@@ -83,9 +83,15 @@ public class DialogueManager : MonoBehaviour
             isActive = false;
             ////////////////////////////////////////////////////////////////////////////////
             dialogueBox.SetActive(false);
-            GameManager.instance.currentState = GameState.Exploration;
+            StartCoroutine(DelayExploration());
             ////////////////////////////////////////////////////////////////////////////////
         }
+    }
+
+    IEnumerator DelayExploration()
+    {
+        yield return new WaitForSeconds(0.2f);
+        GameManager.instance.currentState = GameState.Exploration;
     }
 
     IEnumerator TypeSentence(string sentence)

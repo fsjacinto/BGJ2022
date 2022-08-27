@@ -13,6 +13,7 @@ public class MapTraversal : MonoBehaviour
     [SerializeField] private bool isColliding = false;
     [SerializeField] private bool hasEnemyStayedLong = false;
     private bool canAccess;
+    //private bool isConvo;
 
     private Transform player;
     private Transform enemy;
@@ -30,10 +31,15 @@ public class MapTraversal : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isColliding)
         {
             if (canAccess)
+            {
                 StartCoroutine(PlayerTraverseLocation());
-            else
-                if(GameManager.instance.dialogueGO.activeSelf == false)
-                    noAccessDialogue.StartDialogue();
+            }
+            else if (GameManager.instance.currentState == GameState.Exploration)
+            {
+                Debug.Log(GameManager.instance.currentState);
+                noAccessDialogue.StartDialogue();
+            }
+            //if(GameManager.instance.dialogueGO.activeSelf == false)
         }
 
         
