@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
     public Image actorImage;
     public TextMeshProUGUI actorName;
     public TextMeshProUGUI messageText;
+
     
     public float wordSpeed;
 
@@ -18,8 +19,16 @@ public class DialogueManager : MonoBehaviour
     int activeMessage = 0;
     public static bool isActive = false;
 
+    /// ///////////////////////////////////////////////////////////
+    [SerializeField] GameObject dialogueBox;
+    /// ///////////////////////////////////////////////////////////
+
     public void OpenDialogue(Message[] messages, Actor[] actors) 
     {
+        /// ///////////////////////////////////////////////////////////
+        GameManager.instance.UpdateGameState(GameState.Dialogue);
+        dialogueBox.SetActive(true);
+        /// ///////////////////////////////////////////////////////////
         currentMessages = messages;
         currentActors = actors;
         activeMessage = 0;
@@ -72,7 +81,17 @@ public class DialogueManager : MonoBehaviour
         {
             Debug.Log("Conversation ended.");
             isActive = false;
+            ////////////////////////////////////////////////////////////////////////////////
+            dialogueBox.SetActive(false);
+            StartCoroutine(DelayExploration());
+            ////////////////////////////////////////////////////////////////////////////////
         }
+    }
+
+    IEnumerator DelayExploration()
+    {
+        yield return new WaitForSeconds(0.2f);
+        GameManager.instance.currentState = GameState.Exploration;
     }
 
     IEnumerator TypeSentence(string sentence)
