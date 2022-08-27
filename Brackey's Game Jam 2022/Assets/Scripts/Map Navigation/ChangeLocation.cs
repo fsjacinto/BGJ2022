@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ChangeLocation : MonoBehaviour
 {
-    [SerializeField] private GameObject location;
+    [SerializeField] private GameObject vCamera;
 
     private void Awake()
     {
-        //location.SetActive(false);
+        vCamera.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Player"))
         {
-            location.SetActive(true);
+            vCamera.SetActive(true);
         }
     }
 
@@ -23,7 +23,7 @@ public class ChangeLocation : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //location.SetActive(false);
+            vCamera.SetActive(false);
         }
     }
 }

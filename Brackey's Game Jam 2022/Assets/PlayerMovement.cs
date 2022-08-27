@@ -50,4 +50,27 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Vertical", mV);
         }
     }
+
+    public void PlayerFaceTo(PlayerFace playerFaceTo)
+    {
+        if (playerFaceTo == PlayerFace.Front)
+        {
+            animator.SetTrigger("FaceFront");
+        }
+        else if (playerFaceTo == PlayerFace.Left)
+        {
+            animator.SetTrigger("FaceLeft");
+        }
+        else if (playerFaceTo == PlayerFace.Right)
+        {
+            animator.SetTrigger("FaceRight");
+        }
+    }
+}
+
+public enum PlayerFace
+{
+    Front,
+    Left,
+    Right
 }
