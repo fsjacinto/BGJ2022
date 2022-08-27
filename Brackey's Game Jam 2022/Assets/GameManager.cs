@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject levelManager;
     public List<Task> levelTaskList = new List<Task>();
     public GameObject dialogueGO;
+    public PlayerMovement playerMovement;
+    public Animator playerAnimator;
 
 
     private void Awake()
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -50,6 +52,9 @@ public class GameManager : MonoBehaviour
 
         else if(currentState == GameState.Dialogue)
         {
+            //playerMovement.playerAnimator.SetTrigger("Idle");
+              playerAnimator.SetTrigger("Idle");
+            //playerMovement.PlayerFaceTo(PlayerFace.Right);
             // Stop Enemy Movement
             // Stop Player Movement
         }
@@ -81,6 +86,11 @@ public class GameManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public void UpdateTaskBool(int taskIndex)
+    {
+        levelTaskList[taskIndex].isFinished = true;
     }
 
 }

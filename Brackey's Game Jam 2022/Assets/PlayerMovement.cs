@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody playerRB;
 
     [SerializeField] private float playerSpeed = 5f;
-    [SerializeField] private Animator animator;
+    public Animator playerAnimator;
 
     [Header("Player Stairs")]
     [SerializeField] GameObject stepRayUpper;
@@ -28,11 +28,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GameManager.instance.currentState != GameState.Exploration)
         {
-            mH = 0f;
             mV = 0f;
+            mH = 0f;
             return;
         }
-
         // Get input
         mH = -(Input.GetAxisRaw("Horizontal"));
         mV = -(Input.GetAxisRaw("Vertical"));
@@ -51,19 +50,19 @@ public class PlayerMovement : MonoBehaviour
         // Animation
         if (mH == 0f && mV == 0f)
         {
-            animator.SetTrigger("Idle");
+            playerAnimator.SetTrigger("Idle");
         }
 
         if (mH != 0f && mV != 0f)
         {
-            animator.SetFloat("Vertical", 0f);
-            animator.SetFloat("Horizontal", mH);
+            playerAnimator.SetFloat("Vertical", 0f);
+            playerAnimator.SetFloat("Horizontal", mH);
         }
         else
         {
-            animator.SetFloat("Horizontal", mH);
+            playerAnimator.SetFloat("Horizontal", mH);
 
-            animator.SetFloat("Vertical", mV);
+            playerAnimator.SetFloat("Vertical", mV);
         }
     }
 
@@ -85,15 +84,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerFaceTo == PlayerFace.Front)
         {
-            animator.SetTrigger("FaceFront");
+            playerAnimator.SetTrigger("FaceFront");
         }
         else if (playerFaceTo == PlayerFace.Left)
         {
-            animator.SetTrigger("FaceLeft");
+            playerAnimator.SetTrigger("FaceLeft");
         }
         else if (playerFaceTo == PlayerFace.Right)
         {
-            animator.SetTrigger("FaceRight");
+            playerAnimator.SetTrigger("FaceRight");
         }
     }
 }
