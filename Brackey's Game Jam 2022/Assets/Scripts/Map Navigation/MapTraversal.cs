@@ -13,6 +13,7 @@ public class MapTraversal : MonoBehaviour
     [SerializeField] private bool isColliding = false;
     [SerializeField] private bool hasEnemyStayedLong = false;
     private bool canAccess;
+    private bool isTraversing = false;
     //private bool isConvo;
 
     private Transform player;
@@ -30,8 +31,9 @@ public class MapTraversal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isColliding)
         {
-            if (canAccess)
+            if (canAccess && !isTraversing)
             {
+                isTraversing = true;
                 StartCoroutine(PlayerTraverseLocation());
             }
             else if (GameManager.instance.currentState == GameState.Exploration)
@@ -82,9 +84,11 @@ public class MapTraversal : MonoBehaviour
 
     private IEnumerator PlayerTraverseLocation()
     {
+        GameManager.instance.TriggerFadeTransition(0.5f);
         yield return new WaitForSeconds(0.5f);
         playerMovement.PlayerFaceTo(playerFaceTo);
         player.position = enterToRoom.position;
+        isTraversing = false;
     }
 
     private IEnumerator EnemyTraverseLocation()

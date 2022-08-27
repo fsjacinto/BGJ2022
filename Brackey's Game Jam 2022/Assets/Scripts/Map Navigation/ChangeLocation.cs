@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class ChangeLocation : MonoBehaviour
 {
@@ -27,10 +28,10 @@ public class ChangeLocation : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(location);
         if (collision.CompareTag("Player"))
         {
             vCamera.SetActive(true);
+            GameManager.instance.virtualCamera = vCamera.GetComponent<CinemachineVirtualCamera>();
             playerMovement.playerLocation = location;
 
             if (enemyAI.enemyLocation == playerMovement.playerLocation)
@@ -88,7 +89,6 @@ public class ChangeLocation : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         if (enemyAI.enemyLocation != playerMovement.playerLocation)
         {
-            Debug.Log("pass");
             enemyLight.enabled = false;
             enemySpriteRenderer.enabled = false;
         }
