@@ -8,9 +8,19 @@ public class ChangeLocation : MonoBehaviour
     [SerializeField] private Location location;
     [SerializeField] private List<MapTraversal> mapTraversals;
 
+    private EnemyAI enemyAI;
+    private Light enemyLight;
+    private SpriteRenderer enemySpriteRenderer;
+
     private void Awake()
     {
         vCamera.SetActive(false);
+        enemyAI = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();
+        enemySpriteRenderer = enemyAI.GetComponentInChildren<SpriteRenderer>();
+        enemyLight = GameObject.FindGameObjectWithTag("EnemyLight").GetComponent<Light>();
+        
+        enemyLight.enabled = false;
+        enemySpriteRenderer.enabled = false;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -19,15 +29,24 @@ public class ChangeLocation : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             vCamera.SetActive(true);
+
+            if (enemyAI.enemyLocation == location)
+            {
+                enemyLight.enabled = true; 
+                enemySpriteRenderer.enabled = true;
+            }
         }
 
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<EnemyAI>().enemyLocation = location;
+            collision.GetComponent<EnemyAI>().ChangeLocation(location);
 
             if(collision.GetComponent<EnemyAI>().enemyLocation == location)
             {
-                foreach(MapTraversal mt in mapTraversals)
+                enemyLight.enabled = true;
+                enemySpriteRenderer.enabled = true;
+
+                foreach (MapTraversal mt in mapTraversals)
                 {
                     StartCoroutine(mt.ToggleEnemyTraversal(true));
                 }
@@ -40,6 +59,8 @@ public class ChangeLocation : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             vCamera.SetActive(false);
+            enemyLight.enabled = false;
+            enemySpriteRenderer.enabled = false;
         }
 
         if (collision.CompareTag("Enemy"))
@@ -59,5 +80,9 @@ public enum Location
 {
     Basement,
     Livingroom,
-    Kitchen
+    Kitchen,
+    Hallway1F,
+    Hallway2F,
+    Storage,
+    Bedroom
 }

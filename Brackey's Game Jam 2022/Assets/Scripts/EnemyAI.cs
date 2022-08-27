@@ -23,23 +23,30 @@ public class EnemyAI : MonoBehaviour
 
     public Location enemyLocation;
 
+    [Header("Enemy Stairs")]
+    [SerializeField] GameObject stepRayUpper;
+    [SerializeField] GameObject stepRayLower;
+    [SerializeField] float stepHeight = 0.2f;
+    [SerializeField] float stepSmooth = 0.1f;
+
     public enum EnemyState
     {
         Patrolling,
         Chasing
     }
 
-
-    private void Start()
+    private void Awake()
     {
         enemyRB = GetComponent<Rigidbody>();
         //agent = GetComponent<NavMeshAgent>();
         isMovingToLast = true;
         enemyState = EnemyState.Patrolling;
+        stepRayUpper.transform.position = new Vector3(stepRayLower.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
     }
 
     void FixedUpdate()
     {
+        StepClimb();
         //// Get input
         //if(transform.position != waypoints[0].transform.position)
         //{
@@ -59,9 +66,10 @@ public class EnemyAI : MonoBehaviour
 
         if (direction != Vector3.zero)
         {
-            enemyRB.MovePosition(transform.position + direction * enemySpeed * Time.deltaTime);
+            enemyRB.MovePosition(transform.position + direction.normalized * enemySpeed * Time.deltaTime);
             //enemyRB.MovePosition(Vector3.SmoothDamp(transform.position, waypoints[waypointIndex].transform.position,
-            //    ref enemySpeed, Time.deltaTime));
+                //    ref enemySpeed, Time.deltaTime));
+
         }
         //else
         //    isDone = true;
@@ -70,7 +78,6 @@ public class EnemyAI : MonoBehaviour
         //    waypointIndex++;
             
     }
-
 
     private void Update()
     {
@@ -160,7 +167,27 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    
+    private void StepClimb()
+    {
+        RaycastHit hitLower;
+
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.back), out hitLower, 0.2f))
+        {
+            RaycastHit hitUpper;
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.back), out hitUpper, 0.2f))
+            {
+                enemyRB.position -= new Vector3(0f, -stepSmooth, 0f);
+            }
+        }
+    }
+
+    public void ChangeLocation(Location location)
+    {
+        enemyLocation = location;
+
+        int layerToChange = LayerMask.NameToLayer(location.ToString());
+        gameObject.layer = layerToChange;
+    }
 
     // Attempt 6
     // ----------------------------------------------------------------------------------------

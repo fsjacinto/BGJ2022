@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - LevelManager
   - Canvas
+  - EnemyLight
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - Basement
   - Livingroom
   - Kitchen
-  - Hallway-1F
-  - Hallway-2F
+  - Hallway1F
+  - Hallway2F
   - Storage
   - Bedroom
   - 
