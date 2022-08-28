@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EventCollider : MonoBehaviour
 {
@@ -9,9 +10,12 @@ public class EventCollider : MonoBehaviour
     private bool isTriggered = false;
     [SerializeField] private DialogueTrigger dialogue;
     [SerializeField] private bool isColliding = false;
+   // [SerializeField] private int eventCollActionIndex;
 
     // Requirements
     [SerializeField] private List<int> prereqList;
+
+    public UnityEvent OtherFunctions;
 
     // Update is called once per frame
     void Update()
@@ -24,6 +28,7 @@ public class EventCollider : MonoBehaviour
                 {
                     isTriggered = true;
                     dialogue.StartDialogue();
+                    DoFunctions();
                 }
             }
         }
@@ -45,5 +50,10 @@ public class EventCollider : MonoBehaviour
         {
             isColliding = false;
         }
+    }
+
+    private void DoFunctions()
+    {
+        OtherFunctions.Invoke();
     }
 }

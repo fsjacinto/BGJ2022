@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
@@ -21,15 +22,17 @@ public class DialogueManager : MonoBehaviour
 
     /// ///////////////////////////////////////////////////////////
     [SerializeField] GameObject dialogueBox;
+    public UnityEvent DialogueFunctions;
     //[SerializeField] DialogueTrigger lastDialogue;
     /// ///////////////////////////////////////////////////////////
 
-    public void OpenDialogue(Message[] messages, Actor[] actors) 
+    public void OpenDialogue(UnityEvent functions, Message[] messages, Actor[] actors) 
     {
         /// ///////////////////////////////////////////////////////////
         GameManager.instance.UpdateGameState(GameState.Dialogue);
         dialogueBox.SetActive(true);
         /// ///////////////////////////////////////////////////////////
+        DialogueFunctions = functions;
         currentMessages = messages;
         currentActors = actors;
         activeMessage = 0;
@@ -81,6 +84,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             Debug.Log("Conversation ended.");
+            StartFunctions();
             //isActive = false;
             ////////////////////////////////////////////////////////////////////////////////
             dialogueBox.SetActive(false);
@@ -104,6 +108,11 @@ public class DialogueManager : MonoBehaviour
             messageText.text += letter;
             yield return new WaitForSeconds(wordSpeed);
         }
+    }
+
+    private void StartFunctions()
+    {
+        DialogueFunctions.Invoke();
     }
 
     private void Update()

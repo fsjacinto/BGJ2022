@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
             s.source.clip = s.audioClip;
             s.source.loop = s.isLoop;
             s.source.volume = s.volume;
+            s.source.playOnAwake = s.playOnWake;
 
             switch (s.audioType)
             {
@@ -65,5 +66,17 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Stop();
+    }
+
+    public AudioSource GetSource(string sound)
+    {
+        Sound s = Array.Find(sounds, item => item.clipName == sound);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return null;
+        }
+
+        return s.source;
     }
 }

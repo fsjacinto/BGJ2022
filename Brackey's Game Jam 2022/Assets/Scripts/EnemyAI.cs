@@ -5,7 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    private Rigidbody enemyRB;
+    public Rigidbody enemyRB;
+    public Collider enemyCOL;
+    public GameObject enemySpriteGO;
+    public GameObject enemyLightGO;
     //private NavMeshAgent agent;
 
     [SerializeField] private float enemySpeed = 5f;
@@ -18,7 +21,7 @@ public class EnemyAI : MonoBehaviour
     private Vector3 direction;
     private bool isDone = false;
     public bool traversed = false;
-    private EnemyState enemyState;
+    public EnemyState enemyState;
     private bool isMovingToLast;
 
     public Location enemyLocation;
@@ -38,7 +41,7 @@ public class EnemyAI : MonoBehaviour
     public enum EnemyState
     {
         Patrolling,
-        Chasing
+        Asleep
     }
 
     private void Awake()
@@ -50,14 +53,20 @@ public class EnemyAI : MonoBehaviour
     {
         enemyRB = GetComponent<Rigidbody>();
         //agent = GetComponent<NavMeshAgent>();
+        enemySpriteGO.SetActive(false);
+        enemyLightGO.SetActive(false);
+        enemyCOL.enabled = false;
+        enemyRB.constraints = RigidbodyConstraints.FreezePosition;
+
+
         isMovingToLast = true;
-        enemyState = EnemyState.Patrolling;
+        enemyState = EnemyState.Asleep;
         stepRayUpper.transform.position = new Vector3(stepRayLower.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
     }
 
     void FixedUpdate()
     {
-        if (GameManager.instance.currentState != GameState.Exploration) return; 
+        if (GameManager.instance.currentState != GameState.Exploration && GameManager.instance.currentState != GameState.Hiding) return; 
 
         StepClimb();
 
@@ -71,7 +80,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.instance.currentState != GameState.Exploration) return;
+        if (GameManager.instance.currentState != GameState.Exploration && GameManager.instance.currentState != GameState.Hiding) return;
 
         /// Patrolling
         if (enemyState == EnemyState.Patrolling)

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject dialogueGO;
     public PlayerMovement playerMovement;
     public Animator playerAnimator;
+    [SerializeField] private EnemyAI enemy;
 
     public LevelName currentLevel;
     private Level1 level1;
@@ -133,6 +134,15 @@ public class GameManager : MonoBehaviour
         fadeTransitionTime = _fadeTransitionTime;
         StartCoroutine(FadeInTransition());
     }
+
+    public void EnemyStart()
+    {
+        enemy.enemyState = EnemyAI.EnemyState.Patrolling;
+        enemy.enemySpriteGO.SetActive(true);
+        enemy.enemyLightGO.SetActive(true);
+        enemy.enemyCOL.enabled = true;
+        enemy.enemyRB.constraints = ~RigidbodyConstraints.FreezePosition;
+    }
     #endregion
 
     #region Starting Panel Transition
@@ -212,6 +222,10 @@ public class GameManager : MonoBehaviour
     #region Death System
     public void GameOver()
     {
+        if (!AudioManager.instance.GetSource("Scream").isPlaying)
+        {
+            AudioManager.instance.Play("Scream");
+        }
         UpdateGameState(GameState.Panel);
         ShakeCamera(1.5f, 3f);
         StartCoroutine(WaitToDeathPanel());

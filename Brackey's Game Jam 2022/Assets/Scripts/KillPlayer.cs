@@ -6,7 +6,7 @@ public class KillPlayer : MonoBehaviour
 {
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && GameManager.instance.currentState == GameState.Exploration)
         {
             GameManager.instance.GameOver();
         }
