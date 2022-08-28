@@ -1723,12 +1723,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - actorID: 0
-    message: Can't get out
+    message: I think I have food in the chest
   - actorID: 0
-    message: bummer
+    message: I think I have food in the chest
   actors:
-  - name: A
-    sprite: {fileID: 21300000, guid: dc2b6741dbea32040b749bb5f55994c5, type: 3}
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
   Functions:
     m_PersistentCalls:
       m_Calls: []
@@ -3064,7 +3064,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566903276}
-  m_LocalRotation: {x: -0.0036788876, y: 0.9802367, z: -0.1969446, w: -0.018310636}
+  m_LocalRotation: {x: -0.003678882, y: 0.9802367, z: -0.19694461, w: -0.018310606}
   m_LocalPosition: {x: 2.6333601, y: 3.1585956, z: 5.7381277}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
