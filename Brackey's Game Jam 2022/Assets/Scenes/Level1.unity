@@ -355,9 +355,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 30
-  m_Range: 15
-  m_SpotAngle: 110
+  m_Intensity: 10
+  m_Range: 7
+  m_SpotAngle: 87.5
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
@@ -504,9 +504,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 30
-  m_Range: 15
-  m_SpotAngle: 110
+  m_Intensity: 10
+  m_Range: 7
+  m_SpotAngle: 87.5
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
@@ -1531,7 +1531,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: e6a4718b1a025c549807b5d370bb2fd3, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 30aa7d44a7d35c0429985b28d48777ec, type: 2}
 --- !u!4 &218714477
 Transform:
   m_ObjectHideFlags: 0
@@ -1850,7 +1850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 316149911}
   - component: {fileID: 316149912}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: finishedDlg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2112,7 +2112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6966ae45c8ae8344abe878f856b6dbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 2
+  playerSpeed: 1.8
   playerAnimator: {fileID: 1051478929}
   stepRayUpper: {fileID: 705936956}
   stepRayLower: {fileID: 1438498358}
@@ -2503,9 +2503,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 30
-  m_Range: 15
-  m_SpotAngle: 110
+  m_Intensity: 10
+  m_Range: 7
+  m_SpotAngle: 87.5
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
@@ -3059,7 +3059,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566903276}
-  m_LocalRotation: {x: -0.003678882, y: 0.9802367, z: -0.19694461, w: -0.018310606}
+  m_LocalRotation: {x: -0.0036788876, y: 0.9802367, z: -0.1969446, w: -0.018310636}
   m_LocalPosition: {x: 2.6333601, y: 3.1585956, z: 5.7381277}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4311,7 +4311,7 @@ GameObject:
   - component: {fileID: 857284418}
   - component: {fileID: 857284417}
   - component: {fileID: 857284416}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: 2DSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5597,7 +5597,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6213,9 +6213,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 30
-  m_Range: 15
-  m_SpotAngle: 110
+  m_Intensity: 10
+  m_Range: 7
+  m_SpotAngle: 87.5
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
@@ -6916,7 +6916,7 @@ GameObject:
   - component: {fileID: 1329535919}
   - component: {fileID: 1329535921}
   - component: {fileID: 1329535920}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Plant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7341,9 +7341,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 30
-  m_Range: 15
-  m_SpotAngle: 110
+  m_Intensity: 10
+  m_Range: 7
+  m_SpotAngle: 87.5
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
@@ -7592,7 +7592,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435663185}
-  m_LocalRotation: {x: 0.011791919, y: 0.733861, z: -0.01274321, w: 0.67907774}
+  m_LocalRotation: {x: 0.011791913, y: 0.7338611, z: -0.012743204, w: 0.6790777}
   m_LocalPosition: {x: -65.71, y: 2.5, z: 5.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8028,26 +8028,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 1
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
 --- !u!81 &1499421606
 AudioListener:
   m_ObjectHideFlags: 0
@@ -8586,7 +8566,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578450616}
-  m_LocalRotation: {x: 0.027932484, y: 0.77275884, z: -0.034090612, w: 0.63316774}
+  m_LocalRotation: {x: 0.027932473, y: 0.77275884, z: -0.034090597, w: 0.63316774}
   m_LocalPosition: {x: -26.62, y: 2.5, z: 5.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10153,7 +10133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1950311158
 Light:
   m_ObjectHideFlags: 0
@@ -10353,9 +10333,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 30
-  m_Range: 15
-  m_SpotAngle: 110
+  m_Intensity: 10
+  m_Range: 7
+  m_SpotAngle: 87.5
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
@@ -10962,9 +10942,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 30
-  m_Range: 15
-  m_SpotAngle: 110
+  m_Intensity: 10
+  m_Range: 7
+  m_SpotAngle: 87.5
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
