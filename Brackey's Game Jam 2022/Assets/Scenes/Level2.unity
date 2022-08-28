@@ -420,14 +420,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - actorID: 0
-    message: Second night
-  - actorID: 1
-    message: lezzgo
+    message: 'My hallucinations are getting worse again '
+  - actorID: 0
+    message: I guess I'll have to use force
   actors:
-  - name: A
-    sprite: {fileID: 21300000, guid: dc2b6741dbea32040b749bb5f55994c5, type: 3}
-  - name: B
-    sprite: {fileID: 21300000, guid: 77321cff40240e34eb604af8a3730fce, type: 3}
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
   Functions:
     m_PersistentCalls:
       m_Calls: []
@@ -1629,12 +1627,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - actorID: 0
-    message: Can't get out
-  - actorID: 0
-    message: bummer
+    message: Let me get some food first from the chest
   actors:
-  - name: A
-    sprite: {fileID: 21300000, guid: dc2b6741dbea32040b749bb5f55994c5, type: 3}
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
   Functions:
     m_PersistentCalls:
       m_Calls: []
@@ -3938,6 +3934,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &731871409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 731871410}
+  - component: {fileID: 731871411}
+  m_Layer: 10
+  m_Name: yesDlg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &731871410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731871409}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -67.17, y: -0.22450231, z: 2.95}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 462777393}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &731871411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731871409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce02ce5f712311646aeaa00d22bb2d79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - actorID: 0
+    message: ( underneath the table of her bedroom you find her graduation photo)
+  - actorID: 0
+    message: ( you also found a knife)
+  actors:
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
+  Functions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &740879115
 GameObject:
   m_ObjectHideFlags: 0
@@ -4880,6 +4930,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890283636}
   m_CullTransparentMesh: 1
+--- !u!1 &899366011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 899366012}
+  - component: {fileID: 899366013}
+  m_Layer: 0
+  m_Name: Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &899366012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899366011}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1232887013}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &899366013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899366011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce02ce5f712311646aeaa00d22bb2d79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - actorID: 1
+    message: Ahh!
+  - actorID: 1
+    message: what the fuck are you doing in my house?
+  - actorID: 1
+    message: what the fuck are you doing in my house?
+  - actorID: 1
+    message: I knew someone else was i the house
+  - actorID: 1
+    message: Fucking creep!
+  - actorID: 0
+    message: I... I...
+  actors:
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
+  - name: Nikkole
+    sprite: {fileID: 21300000, guid: 3a5aacf5a78a88d4fbb5103daa9fc46c, type: 3}
+  Functions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2011657555}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: TransitionToNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &901667786
 GameObject:
   m_ObjectHideFlags: 0
@@ -6450,8 +6576,8 @@ MonoBehaviour:
   taskIndex: 1
   isColliding: 0
   noAccessDialogue: {fileID: 0}
-  yesAccessDialogue: {fileID: 1405227859}
-  finishedDialogue: {fileID: 1728288453}
+  yesAccessDialogue: {fileID: 731871411}
+  finishedDialogue: {fileID: 1670243389}
   prereqList: 
 --- !u!65 &1161918963
 BoxCollider:
@@ -6796,6 +6922,7 @@ Transform:
   - {fileID: 1011230093}
   - {fileID: 2101049499}
   - {fileID: 1740786363}
+  - {fileID: 899366012}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7725,11 +7852,9 @@ MonoBehaviour:
   messages:
   - actorID: 0
     message: I need this to get out
-  - actorID: 0
-    message: fast
   actors:
-  - name: A
-    sprite: {fileID: 21300000, guid: dc2b6741dbea32040b749bb5f55994c5, type: 3}
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
   Functions:
     m_PersistentCalls:
       m_Calls: []
@@ -7880,7 +8005,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435663185}
-  m_LocalRotation: {x: 0.011791913, y: 0.7338611, z: -0.012743204, w: 0.6790777}
+  m_LocalRotation: {x: 0.011791919, y: 0.733861, z: -0.01274321, w: 0.67907774}
   m_LocalPosition: {x: -65.71, y: 2.5, z: 5.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8310,8 +8435,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499421603}
-  m_LocalRotation: {x: 0.04653447, y: 0.8349744, z: -0.07147214, w: 0.5436397}
-  m_LocalPosition: {x: -13.77, y: 2.5, z: 5.41}
+  m_LocalRotation: {x: -0.0036788876, y: 0.9802367, z: -0.1969446, w: -0.018310636}
+  m_LocalPosition: {x: -1.8, y: 2.5, z: 5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1951219263}
@@ -9000,6 +9125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canWin: 1
   prereqList: 01000000
+  dialogue: {fileID: 899366013}
 --- !u!1 &1590843701
 GameObject:
   m_ObjectHideFlags: 0
@@ -9282,6 +9408,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669679474}
   m_CullTransparentMesh: 1
+--- !u!1 &1670243387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1670243388}
+  - component: {fileID: 1670243389}
+  m_Layer: 10
+  m_Name: finishedDlg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1670243388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670243387}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -67.17, y: -0.22450231, z: 2.95}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 462777393}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1670243389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670243387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce02ce5f712311646aeaa00d22bb2d79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - actorID: 0
+    message: I'll have to use this
+  actors:
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
+  Functions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1676878312 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cac8e40da6668404d8e2bcf03268c4e2, type: 3}
@@ -9437,12 +9615,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - actorID: 0
-    message: I already got it
-  - actorID: 0
-    message: nice
+    message: I'm full
   actors:
-  - name: A
-    sprite: {fileID: 21300000, guid: dc2b6741dbea32040b749bb5f55994c5, type: 3}
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
   Functions:
     m_PersistentCalls:
       m_Calls: []
@@ -10997,7 +11173,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2049310262}
   - component: {fileID: 2049310263}
-  - component: {fileID: 2049310264}
   m_Layer: 12
   m_Name: TriggerCollider
   m_TagString: Untagged
@@ -11032,24 +11207,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8249238, y: 1.9240172, z: 1.3295599}
   m_Center: {x: -0.41246235, y: 0.3054045, z: 0.31307358}
---- !u!114 &2049310264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049310261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc610f539279fb14b909949e2a4230fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  taskIndex: 2
-  isColliding: 0
-  noAccessDialogue: {fileID: 0}
-  yesAccessDialogue: {fileID: 0}
-  finishedDialogue: {fileID: 1941387062}
-  prereqList: 
 --- !u!1 &2057403139
 GameObject:
   m_ObjectHideFlags: 0

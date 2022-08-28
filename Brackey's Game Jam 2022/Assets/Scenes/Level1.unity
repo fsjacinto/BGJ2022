@@ -450,14 +450,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - actorID: 0
-    message: aaaaaaaa
-  - actorID: 1
-    message: bbbbbbbb
+    message: So far so good...
+  - actorID: 0
+    message: It's been a week since I started living here
+  - actorID: 0
+    message: My hallucinations were starting to get really bad at the last house,
+      I couldn't sleep
+  - actorID: 0
+    message: '*stomach growls*'
+  - actorID: 0
+    message: Haven't eaten in a while. I think I still have some food around here
   actors:
-  - name: A
-    sprite: {fileID: 21300000, guid: dc2b6741dbea32040b749bb5f55994c5, type: 3}
-  - name: B
-    sprite: {fileID: 21300000, guid: 77321cff40240e34eb604af8a3730fce, type: 3}
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
   Functions:
     m_PersistentCalls:
       m_Calls: []
@@ -3059,7 +3064,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566903276}
-  m_LocalRotation: {x: -0.003678882, y: 0.9802367, z: -0.19694461, w: -0.018310606}
+  m_LocalRotation: {x: -0.0036788876, y: 0.9802367, z: -0.1969446, w: -0.018310636}
   m_LocalPosition: {x: 2.6333601, y: 3.1585956, z: 5.7381277}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3667,12 +3672,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - actorID: 0
-    message: I hear footsteps
+    message: '*clank*'
+  - actorID: 0
+    message: '(a sardine can falls on the floor) '
   - actorID: 0
     message: shit
   actors:
-  - name: A
-    sprite: {fileID: 21300000, guid: dc2b6741dbea32040b749bb5f55994c5, type: 3}
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
   Functions:
     m_PersistentCalls:
       m_Calls: []
@@ -4064,12 +4071,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - actorID: 0
-    message: Gotta get out of here...
-  - actorID: 0
-    message: I'm done here
+    message: Got all I need
   actors:
-  - name: A
-    sprite: {fileID: 21300000, guid: dc2b6741dbea32040b749bb5f55994c5, type: 3}
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
   Functions:
     m_PersistentCalls:
       m_Calls: []
@@ -7436,12 +7441,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - actorID: 0
-    message: I need this to get out
-  - actorID: 0
-    message: fast
+    message: Ah, it's empty. Don't really want to, but I guess I have to go to the
+      kitchen.
   actors:
-  - name: A
-    sprite: {fileID: 21300000, guid: dc2b6741dbea32040b749bb5f55994c5, type: 3}
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
   Functions:
     m_PersistentCalls:
       m_Calls: []
@@ -9183,11 +9187,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - actorID: 0
-    message: I already got it
-  - actorID: 0
-    message: nice
+    message: Empty
   actors:
-  - name: A
+  - name: Vinz
     sprite: {fileID: 21300000, guid: dc2b6741dbea32040b749bb5f55994c5, type: 3}
   Functions:
     m_PersistentCalls:
@@ -9656,12 +9658,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - actorID: 0
-    message: I should be more careful next time
+    message: '*pant*'
   - actorID: 0
-    message: Hope it won't bother me again
+    message: Crap
+  - actorID: 0
+    message: Not again
+  - actorID: 0
+    message: And I was doing so well
+  - actorID: 0
+    message: I can't move again, living here is very convenient
+  - actorID: 0
+    message: I just need to be more careful next time
   actors:
-  - name: A
-    sprite: {fileID: 21300000, guid: dc2b6741dbea32040b749bb5f55994c5, type: 3}
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
   Functions:
     m_PersistentCalls:
       m_Calls:
@@ -9920,14 +9930,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - actorID: 0
-    message: Hmm.. oranges
+    message: (You take a couple sandwiches and cans of sardines)
   - actorID: 0
-    message: Hmm.. oranges
-  - actorID: 0
-    message: Yeah, this will do
+    message: Hmm.. yeah, this will do.
   actors:
-  - name: A
-    sprite: {fileID: 21300000, guid: dc2b6741dbea32040b749bb5f55994c5, type: 3}
+  - name: Vinz
+    sprite: {fileID: 21300000, guid: 88b2e0607465de647b9b776d30eeeec7, type: 3}
   Functions:
     m_PersistentCalls:
       m_Calls: []

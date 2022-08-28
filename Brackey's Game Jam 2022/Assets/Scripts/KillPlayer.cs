@@ -7,6 +7,7 @@ public class KillPlayer : MonoBehaviour
     [SerializeField] private bool canWin = false;
     [SerializeField] private List<int> prereqList;
     private bool gotKnife = false;
+    [SerializeField] DialogueTrigger dialogue;
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -20,7 +21,8 @@ public class KillPlayer : MonoBehaviour
 
                 if (gotKnife)
                 {
-                    GameManager.instance.TransitionToNextLevel();
+                    dialogue.StartDialogue();
+                 //   GameManager.instance.TransitionToNextLevel();
                 }
                 else
                 {
