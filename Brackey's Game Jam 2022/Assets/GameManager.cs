@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     public LevelName currentLevel;
     private Level1 level1;
-    //private Level2 level2;
+    private Level2 level2;
     //private Level3 level3;
 
     [Header("Camera")]
@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
         if(currentLevel == LevelName.Level1)
         {
             level1 = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Level1>();
+        }
+
+        else if (currentLevel == LevelName.Level2)
+        {
+            level2 = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<Level2>();
         }
     }
 
@@ -171,7 +176,18 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        level1.StartLevelDialogue();
+        if (currentLevel == LevelName.Level1)
+        {
+            level1.StartLevelDialogue();
+        }
+
+        else if (currentLevel == LevelName.Level2)
+        {
+            level2.StartLevelDialogue();
+        }
+
+
+
     }
     #endregion
 
@@ -340,5 +356,5 @@ public enum LevelName
 {
     Level1,
     Level2,
-    Level3
+    MainMenu
 }

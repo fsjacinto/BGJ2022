@@ -4,11 +4,29 @@ using UnityEngine;
 
 public class KillPlayer : MonoBehaviour
 {
+    [SerializeField] private bool canWin = false;
+    [SerializeField] private List<int> prereqList;
+    private bool gotKnife = false;
+
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Player") && GameManager.instance.currentState == GameState.Exploration)
         {
-            GameManager.instance.GameOver();
+            if(!canWin)
+                GameManager.instance.GameOver();
+            else
+            {
+                gotKnife = GameManager.instance.CheckPrereqTasks(prereqList);
+
+                if (gotKnife)
+                {
+                    GameManager.instance.TransitionToNextLevel();
+                }
+                else
+                {
+                    GameManager.instance.GameOver();
+                }
+            }
         }
     }
 }
