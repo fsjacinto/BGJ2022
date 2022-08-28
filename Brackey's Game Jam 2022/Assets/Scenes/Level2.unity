@@ -1267,9 +1267,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'AUGUST 4, 2007
+  m_text: 'AUGUST 12, 2007
 
-    1:30 AM'
+    2:12 AM'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cbf5dc8811ea36845a4dd6fb1aa708c7, type: 2}
   m_sharedMaterial: {fileID: 7706820028497765323, guid: cbf5dc8811ea36845a4dd6fb1aa708c7, type: 2}
@@ -7630,7 +7630,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 10
-  m_Range: 7
+  m_Range: 20
   m_SpotAngle: 87.5
   m_InnerSpotAngle: 0
   m_CookieSize: 10
